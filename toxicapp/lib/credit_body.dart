@@ -45,9 +45,10 @@ class _CreditBodyState extends State<CreditBody> {
           ),
           ui.constSizedBox(),
           Text(
-            'Github reference',
+            'Our Github reference',
             style: ui.subHeaderStyle(),
           ),
+          ui.constSizedBox(),
           ui.linkButton('Github link', github),
           ui.constSizedBox(),
           Text(
