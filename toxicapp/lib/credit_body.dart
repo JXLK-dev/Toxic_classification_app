@@ -10,7 +10,8 @@ class CreditBody extends StatefulWidget {
 
 class _CreditBodyState extends State<CreditBody> {
   UIUtilities ui = UIUtilities();
-  Uri github = Uri.parse('https://github.com/JXLK-dev/application');
+  Uri github =
+      Uri.parse('https://github.com/JXLK-dev/Toxic_classification_app');
   @override
   Widget build(BuildContext context) {
     return Center(
