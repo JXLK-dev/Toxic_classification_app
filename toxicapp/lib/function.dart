@@ -14,8 +14,8 @@ class UIUtilities {
     Navigator.pop(context);
   }
 
-  Widget constSizedBox() {
-    return const SizedBox(height: 50);
+  Widget constSizedBox(double height) {
+    return SizedBox(height: height);
   }
 
   TextStyle headerStyle() {
