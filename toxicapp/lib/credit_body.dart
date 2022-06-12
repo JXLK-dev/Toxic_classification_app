@@ -12,6 +12,7 @@ class _CreditBodyState extends State<CreditBody> {
   UIUtilities ui = UIUtilities();
   Uri github =
       Uri.parse('https://github.com/JXLK-dev/Toxic_classification_app');
+  Uri paperIEEE = Uri.parse('www.google.com');
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -55,6 +56,8 @@ class _CreditBodyState extends State<CreditBody> {
             'IEEE paper reference',
             style: ui.subHeaderStyle(),
           ),
+          ui.constSizedBox(),
+          ui.linkButton('Document link', paperIEEE),
         ],
       ),
     );
