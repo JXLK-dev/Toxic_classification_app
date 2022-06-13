@@ -11,7 +11,11 @@ class ToxicBody extends StatefulWidget {
 class _ToxicBodyState extends State<ToxicBody> {
   UIUtilities ui = UIUtilities();
   String comment = '';
-  final models = <String>['KNN', 'Logisitic Regression', 'RandomForest'];
+  final models = <String>[
+    'Support Vector Machine',
+    'Logisitic Regression',
+    'RandomForest'
+  ];
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
