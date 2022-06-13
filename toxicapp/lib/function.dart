@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class BackEndUtilities {
   Future<void> hyperLink(Uri link) async {
     await launchUrl(link);
   }
 
-// Processing data to a model
-  // Future<double> getProbability(String data, String label) async {
-  //   await Container();
-  // }
+  Future getData(url) async {
+    http.Response response = await http.get(url);
+    return response.body;
+  }
 }
 
 class UIUtilities {
@@ -51,5 +52,17 @@ class UIUtilities {
 
   Text toxicProbability(String data, String label) {
     return Text('$label: ');
+  }
+
+  ButtonStyle button(int selectedIndex, index) {
+    return ButtonStyle(
+      shape: MaterialStateProperty.resolveWith((states) =>
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+      side: MaterialStateProperty.resolveWith((states) => BorderSide(
+          color: selectedIndex == index ? Colors.black : Colors.white,
+          width: 3)),
+      backgroundColor:
+          MaterialStateProperty.resolveWith((states) => Colors.lightBlue),
+    );
   }
 }

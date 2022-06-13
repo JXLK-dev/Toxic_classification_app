@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import pickle
-import numpy as np
 
 app = Flask(__name__)
 
@@ -43,10 +42,10 @@ with open(r"identity_hate_model.pkl", "rb") as f:
     idenHateRDF = pickle.load(f)
 
 
-@app.route('/api', methods=['GET'])
+@app.route('/randomforest', methods=['GET'])
 def logpred():
     # Take a string input from user
-    user_input = request.form['Query']
+    user_input = request.args['Query']
     data = [user_input]
 
     vector = toxic.transform(data)
@@ -66,3 +65,23 @@ def logpred():
 
     vector = identityHate.transform(data)
     idenHatePred = idenHateRDF.predict_proba(vector)[:, 1]
+
+    outToxic = round(toxicPred[0], 2)
+    outSevere = round(severePred[0], 2)
+    outObscene = round(obscenePred[0], 2)
+    outInsult = round(insultPred[0], 2)
+    outThreat = round(threatPred[0], 2)
+    outIdenHate = round(idenHatePred[0], 2)
+
+    return jsonify({
+        'Toxic': 'Toxic : {}'.format(outToxic),
+        'Severe': 'Severe: {}'.format(outSevere),
+        'Obscene': 'Obscene {}'.format(outObscene),
+        'Insult': 'Insult {}'.format(outInsult),
+        'Threat': 'Threat {}'.format(outThreat),
+        'IdenHate': 'IdenHate {}'.format(outIdenHate),
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
