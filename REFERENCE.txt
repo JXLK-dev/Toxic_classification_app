@@ -1,0 +1,9 @@
+Reference
+Machine learning
+https://github.com/line-by-line/toxic_comments_classifier
+API flutter
+https://www.youtube.com/watch?v=G000BuC_Ufs
+https://sites.google.com/view/geeky-traveller/app-development/flutter/how-to-link-python-script-py-file-with-flutter-app
+API reference
+
+Flutter UI, self-learned

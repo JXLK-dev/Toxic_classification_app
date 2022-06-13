@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 import pickle
 
 app = Flask(__name__)
 
-with open(r"toxic_vect.pkl", "rb") as f:
+with open("toxic_vect.pkl", "rb") as f:
     toxic = pickle.load(f)
 
 with open(r"severe_toxic_vect.pkl", "rb") as f:
@@ -23,22 +23,22 @@ with open(r"identity_hate_vect.pkl", "rb") as f:
     identityHate = pickle.load(f)
 
 # Load the pickled models
-with open(r"toxic_model.pkl", "rb") as f:
+with open(r"r_toxic_model.pkl", "rb") as f:
     toxicRDF = pickle.load(f)
 
-with open(r"severe_toxic_model.pkl", "rb") as f:
+with open(r"r_severe_toxic_model.pkl", "rb") as f:
     severeRDF = pickle.load(f)
 
-with open(r"obscene_model.pkl", "rb") as f:
+with open(r"r_obscene_model.pkl", "rb") as f:
     obsceneRDF = pickle.load(f)
 
-with open(r"insult_model.pkl", "rb") as f:
+with open(r"r_insult_model.pkl", "rb") as f:
     insultRDF = pickle.load(f)
 
-with open(r"threat_model.pkl", "rb") as f:
+with open(r"r_threat_model.pkl", "rb") as f:
     threatRDF = pickle.load(f)
 
-with open(r"identity_hate_model.pkl", "rb") as f:
+with open(r"r_identity_hate_model.pkl", "rb") as f:
     idenHateRDF = pickle.load(f)
 
 

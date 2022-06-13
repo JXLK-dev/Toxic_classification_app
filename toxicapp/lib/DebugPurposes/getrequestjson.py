@@ -1,2 +1,1 @@
-from flask import Flask, request, jsonify
-app = Flask(__name__)
+import numpy as np
