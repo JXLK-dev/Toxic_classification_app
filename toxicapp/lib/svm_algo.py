@@ -25,22 +25,22 @@ with open(r"identity_hate_vect.pkl", "rb") as f:
 
 # Load the pickled models
 with open(r"toxic_model.pkl", "rb") as f:
-    toxicLR = pickle.load(f)
+    toxicSVM = pickle.load(f)
 
 with open(r"severe_toxic_model.pkl", "rb") as f:
-    severeLR = pickle.load(f)
+    severeSVM = pickle.load(f)
 
 with open(r"obscene_model.pkl", "rb") as f:
-    obsceneLR = pickle.load(f)
+    obsceneSVM = pickle.load(f)
 
 with open(r"insult_model.pkl", "rb") as f:
-    insultLR = pickle.load(f)
+    insultSVM = pickle.load(f)
 
 with open(r"threat_model.pkl", "rb") as f:
-    threatLR = pickle.load(f)
+    threatSVM = pickle.load(f)
 
 with open(r"identity_hate_model.pkl", "rb") as f:
-    idenHateLR = pickle.load(f)
+    idenHateSVM = pickle.load(f)
 
 
 @app.route('/api', methods=['GET'])
@@ -50,19 +50,19 @@ def logpred():
     data = [user_input]
 
     vector = toxic.transform(data)
-    toxicPred = toxicLR.predict_proba(vector)[:, 1]
+    toxicPred = toxicSVM.predict_proba(vector)[:, 1]
 
     vector = severe.transform(data)
-    severePred = severeLR.predict_proba(vector)[:, 1]
+    severePred = severeSVM.predict_proba(vector)[:, 1]
 
     vector = obscene.transform(data)
-    obscenePred = obsceneLR.predict_proba(vector)[:, 1]
+    obscenePred = obsceneSVM.predict_proba(vector)[:, 1]
 
     vector = threat.transform(data)
-    threatPred = threatLR.predict_proba(vector)[:, 1]
+    threatPred = threatSVM.predict_proba(vector)[:, 1]
 
     vector = insult.transform(data)
-    insultPred = insultLR.predict_proba(vector)[:, 1]
+    insultPred = insultSVM.predict_proba(vector)[:, 1]
 
     vector = identityHate.transform(data)
-    idenHatePred = idenHateLR.predict_proba(vector)[:, 1]
+    idenHatePred = idenHateSVM.predict_proba(vector)[:, 1]
