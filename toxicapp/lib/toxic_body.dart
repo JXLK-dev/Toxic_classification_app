@@ -14,9 +14,9 @@ class _ToxicBodyState extends State<ToxicBody> {
   BackEndUtilities machine = BackEndUtilities();
   String comment = '';
   final models = <String>[
-    'Support Vector Machine',
+    'K-Nearest-Neighbours',
     'Logisitic Regression',
-    'RandomForest'
+    'Random Forest'
   ];
   int selectedIndex = 0;
   @override
@@ -72,9 +72,11 @@ class _ToxicBodyState extends State<ToxicBody> {
             SizedBox(
               child: ListView.builder(
                   shrinkWrap: true,
-                  itemBuilder: ((context, index) => Text(
-                        traits[index],
-                        style: ui.subHeaderStyle(),
+                  itemBuilder: ((context, index) => Center(
+                        child: Text(
+                          traits[toxicTraits[index]],
+                          style: ui.subHeaderStyle(),
+                        ),
                       )),
                   itemCount: traits.length),
             )
@@ -83,9 +85,18 @@ class _ToxicBodyState extends State<ToxicBody> {
     );
   }
 
-  List<String> traits = [];
+  // List<String> traits = [];
   bool gotData = false;
-  final typeModel = <String>['svm', 'logreg', 'randomforest'];
+  final typeModel = <String>['knn', 'logreg', 'randomforest'];
+  final toxicTraits = <String>[
+    'Toxic',
+    'Severe',
+    'Obscene',
+    'Insult',
+    'Threat',
+    'IdenHate'
+  ];
+  Map<String, dynamic> traits = {};
   Widget submitButton(int index) {
     if (comment.isEmpty) {
       return Text(
@@ -96,18 +107,13 @@ class _ToxicBodyState extends State<ToxicBody> {
       return ElevatedButton(
         onPressed: () async {
           //change (server) into an actual local server after launching python app
-          String url =
-              'http://(server)/${typeModel[index]}?Query= ${comment.toString()}';
+          Uri url = Uri.parse(
+              'http://localhost:5001/${typeModel[index]}?Query=${comment.toString()}');
           final response = await machine.getData(url);
           final decodeData = jsonDecode(response) as Map<String, dynamic>;
-          gotData = true;
           setState(() {
-            traits.add(decodeData['Toxic']);
-            traits.add(decodeData['Severe']);
-            traits.add(decodeData['Obscene']);
-            traits.add(decodeData['Insult']);
-            traits.add(decodeData['Threat']);
-            traits.add(decodeData['IdenHate']);
+            gotData = true;
+            traits = decodeData;
           });
         },
         style: ui.button(selectedIndex, index),
@@ -124,6 +130,9 @@ class _ToxicBodyState extends State<ToxicBody> {
       onPressed: () async {
         setState(() {
           selectedIndex = index;
+          print(selectedIndex);
+          print(
+              'http://localhost:5001/${typeModel[index]}?Query=${comment.toString()}');
         });
       },
       style: ui.button(selectedIndex, index),
