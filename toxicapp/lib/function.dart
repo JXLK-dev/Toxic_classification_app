@@ -6,6 +6,11 @@ class BackEndUtilities {
   Future<void> hyperLink(Uri link) async {
     await launchUrl(link);
   }
+
+// Processing data to a model
+  // Future<double> getProbability(String data, String label) async {
+  //   await Container();
+  // }
 }
 
 class UIUtilities {
@@ -14,8 +19,11 @@ class UIUtilities {
     Navigator.pop(context);
   }
 
-  Widget constSizedBox(double height) {
-    return SizedBox(height: height);
+  Widget constSizedBox(double height, double width) {
+    return SizedBox(
+      height: height,
+      width: width,
+    );
   }
 
   TextStyle headerStyle() {
@@ -41,16 +49,7 @@ class UIUtilities {
     );
   }
 
-  Widget modelButton(String label) {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.resolveWith((states) => Colors.lightBlue)),
-      child: Text(
-        label,
-        style: const TextStyle(color: Colors.white),
-      ),
-    );
+  Text toxicProbability(String data, String label) {
+    return Text('$label: ');
   }
 }

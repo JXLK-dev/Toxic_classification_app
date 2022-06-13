@@ -18,7 +18,7 @@ class _CreditBodyState extends State<CreditBody> {
     return Center(
       child: Column(
         children: [
-          ui.constSizedBox(30),
+          ui.constSizedBox(30, 0),
           Text(
             'Machine Learning Project made by:',
             style: ui.headerStyle(),
@@ -39,24 +39,24 @@ class _CreditBodyState extends State<CreditBody> {
             'Dave Aurellio Delvino - 2440010012',
             style: ui.subHeaderStyle(),
           ),
-          ui.constSizedBox(50),
+          ui.constSizedBox(50, 0),
           Text(
             'Reference',
             style: ui.headerStyle(),
           ),
-          ui.constSizedBox(20),
+          ui.constSizedBox(20, 0),
           Text(
             'Our Github reference',
             style: ui.subHeaderStyle(),
           ),
-          ui.constSizedBox(10),
+          ui.constSizedBox(10, 0),
           ui.linkButton('Github link', github),
-          ui.constSizedBox(20),
+          ui.constSizedBox(20, 0),
           Text(
             'IEEE paper reference',
             style: ui.subHeaderStyle(),
           ),
-          ui.constSizedBox(10),
+          ui.constSizedBox(10, 0),
           ui.linkButton('Document link', paperIEEE),
         ],
       ),
