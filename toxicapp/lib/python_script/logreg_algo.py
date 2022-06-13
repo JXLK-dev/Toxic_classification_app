@@ -2,8 +2,6 @@ from flask import Flask, request, jsonify
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import pickle
 
-from sklearn.multiclass import OutputCodeClassifier
-
 app = Flask(__name__)
 
 with open(r"toxic_vect.pkl", "rb") as f:

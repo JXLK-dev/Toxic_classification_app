@@ -72,7 +72,10 @@ class _ToxicBodyState extends State<ToxicBody> {
             SizedBox(
               child: ListView.builder(
                   shrinkWrap: true,
-                  itemBuilder: ((context, index) => Text(traits[index])),
+                  itemBuilder: ((context, index) => Text(
+                        traits[index],
+                        style: ui.subHeaderStyle(),
+                      )),
                   itemCount: traits.length),
             )
         ],
