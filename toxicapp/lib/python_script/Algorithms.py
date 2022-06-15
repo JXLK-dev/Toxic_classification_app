@@ -47,6 +47,11 @@ with open(r"r_identity_hate_model.pkl", "rb") as f:
     idenHateRDF = pickle.load(f)
 
 
+@app.route('/')
+def debugpurpose():
+    return 'Hello World'
+
+
 @app.route('/randomforest', methods=['GET'])
 def randomForest():
     # Take a string input from user

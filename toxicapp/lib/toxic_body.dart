@@ -24,6 +24,10 @@ class _ToxicBodyState extends State<ToxicBody> {
     return Center(
       child: Column(
         children: [
+          ui.constSizedBox(20, 0),
+          Text('Python script will deactivate on Thursday 15 September 2022',
+              style: ui.subHeaderStyle()),
+          ui.constSizedBox(20, 0),
           Text(
             'Please insert comment below',
             style: ui.headerStyle(),
@@ -106,9 +110,11 @@ class _ToxicBodyState extends State<ToxicBody> {
     } else {
       return ElevatedButton(
         onPressed: () async {
-          //change (server) into an actual local server after launching python app
+          // To run the python script on localhost, comment the second Uri parse and uncomment the first Uri parse
+          // Uri url = Uri.parse(
+          //     'http://localhost:5001/${typeModel[index]}?Query=${comment.toString()}');
           Uri url = Uri.parse(
-              'http://localhost:5001/${typeModel[index]}?Query=${comment.toString()}');
+              'http://jonijxlk.pythonanywhere.com//${typeModel[index]}?Query=${comment.toString()}');
           final response = await machine.getData(url);
           final decodeData = jsonDecode(response) as Map<String, dynamic>;
           setState(() {
@@ -130,9 +136,9 @@ class _ToxicBodyState extends State<ToxicBody> {
       onPressed: () async {
         setState(() {
           selectedIndex = index;
-          print(selectedIndex);
-          print(
-              'http://localhost:5001/${typeModel[index]}?Query=${comment.toString()}');
+          // print(selectedIndex);
+          // print(
+          //     'http://localhost:5001/${typeModel[index]}?Query=${comment.toString()}');
         });
       },
       style: ui.button(selectedIndex, index),
